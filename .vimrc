@@ -14,4 +14,5 @@ nmap <C-T> : tabnew <CR>
 nmap <C-W> : close <CR>
 nmap <C-B> : tabnext <CR>
 nmap <C-P> : tabprev <CR>
-
+nmap <F3>  : hlsearch! <CR>
+  
