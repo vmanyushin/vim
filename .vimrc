@@ -29,7 +29,7 @@ let g:snips_author='vmanyushin'
 ""
 "" Mapping
 ""
-nmap <C-T> :tabnew<CR>
+nmap <C-T> :tabnew<CR>:Explore<CR>
 nmap <F4>  :close<CR>
 nmap <C-B> :tabnext<CR>
 nmap <C-P> :tabprev<CR>
