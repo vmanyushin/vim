@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+ <head>
+  <title>[untitled]</title>
+  <link rel="stylesheet" type="text/css" href="../../t/vim_syntax.css" />
+ </head>
+ <body>
+
+<pre><span class="synPreProc">#!perl6</span>
+
+<span class="synKeyword">token</span> <span class="synp6RegexName">foo</span> <span class="synNormal">{</span>
+<span class="synString">    </span><span class="synSpecial">&lt;*</span><span class="synNormal">foo-bar</span><span class="synSpecial">&gt;</span>
+<span class="synString">    </span><span class="synSpecial">(&lt;</span><span class="synSpecialChar">-</span><span class="synSpecial">[</span><span class="synString">:</span><span class="synSpecial">]&gt;</span><span class="synSpecialChar">*</span><span class="synSpecial">)</span>
+<span class="synString">    </span><span class="synSpecial">&lt;foo=.</span><span class="synNormal">file</span><span class="synSpecial">&gt;</span>
+<span class="synNormal">}</span>
+
+<span class="synKeyword">token</span> <span class="synp6RegexName">foo</span> <span class="synNormal">{</span>
+<span class="synString">    </span><span class="synSpecial">&lt;*</span><span class="synp6RxAssertion"> </span><span class="synSpecial">&lt; </span><span class="synString">foo bar </span><span class="synSpecial">&gt;</span><span class="synp6RxAssertion"> </span><span class="synSpecial">&gt;</span>
+<span class="synNormal">}</span>
+<span class="synInclude">use</span> <span class="synSpecial">v6.0.0</span><span class="synOperator">;</span>
+<span class="synInclude">use</span> <span class="synNormal">Test</span><span class="synOperator">;</span>
+<span class="synFunction">say</span> <span class="synDelimiter">&quot;</span><span class="synString">foo bar</span><span class="synDelimiter">&quot;</span><span class="synOperator">;</span>
+<span class="synIdentifier">@foo</span><span class="synOperator">.</span><span class="synFunction">push</span><span class="synOperator">:</span> <span class="synDelimiter">&quot;</span><span class="synString">bar</span><span class="synDelimiter">&quot;</span><span class="synOperator">;</span>
+
+<span class="synComment"># Commented out since it correctly highlights &quot;chars&quot; in Vim 7.4,</span>
+<span class="synComment"># but the Travis-CI machines have Vim 7.3 which does it wrong.</span>
+<span class="synRepeat">for</span> <span class="synNumber">0</span><span class="synOperator">..</span><span class="synIdentifier">$string</span><span class="synOperator">.</span><span class="synFunction">chars</span><span class="synOperator">-</span><span class="synNumber">1</span> <span class="synOperator">-&gt;</span> <span class="synIdentifier">$pos</span> {
+}
+
+<span class="synIdentifier">$sum</span> <span class="synOperator">+=</span> <span class="synIdentifier">$num</span> <span class="synConditional">if</span> <span class="synIdentifier">$num</span><span class="synOperator">.</span><span class="synFunction">is-prime</span><span class="synOperator">;</span>
+
+<span class="synKeyword">sub</span> <span class="synNormal">if'a</span>(<span class="synIdentifier">$x</span>) {<span class="synIdentifier">$x</span>}
+<span class="synFunction">is</span> <span class="synNormal">if'a</span>(<span class="synNumber">5</span>)<span class="synOperator">,</span> <span class="synNumber">5</span><span class="synOperator">,</span> <span class="synDelimiter">&quot;</span><span class="synString">if'a is a valid sub name</span><span class="synDelimiter">&quot;</span><span class="synOperator">;</span>
+
+<span class="synFunction">ok</span> (<span class="synSpecial">my</span> <span class="synIdentifier">%</span> <span class="synOperator">=</span> <span class="synString">baz</span> <span class="synOperator">=&gt;</span> <span class="synDelimiter">&quot;</span><span class="synString">luhrman</span><span class="synDelimiter">&quot;</span>)<span class="synOperator">,</span> <span class="synDelimiter">'</span><span class="synString">initialized bare sigil hash %</span><span class="synDelimiter">'</span><span class="synOperator">;</span>
+<span class="synConditional">if</span> (<span class="synIdentifier">$foo</span> <span class="synOperator">%</span> <span class="synNumber">3</span> <span class="synOperator">==</span> <span class="synNumber">0</span>) {
+}
+
+<span class="synSpecial">my</span> <span class="synIdentifier">$f</span> <span class="synOperator">=</span> <span class="synOperator">*</span> <span class="synOperator">!&lt;</span> <span class="synNumber">3</span><span class="synOperator">;</span>
+<span class="synFunction">isa_ok</span> <span class="synIdentifier">$f</span><span class="synOperator">,</span> <span class="synType">Code</span><span class="synOperator">,</span> <span class="synDelimiter">'</span><span class="synString">Whatever-currying !&lt; (1)</span><span class="synDelimiter">'</span><span class="synOperator">;</span>
+
+<span class="synSpecial">my</span> <span class="synIdentifier">$quote</span> <span class="synOperator">=</span> <span class="synDelimiter">q//</span><span class="synOperator">;</span>
+<span class="synSpecial">my</span> <span class="synIdentifier">$call</span> <span class="synOperator">=</span> <span class="synNormal">q</span>()<span class="synOperator">;</span>
+
+<span class="synIdentifier">@data</span> <span class="synOperator">==&gt;</span> <span class="synFunction">grep</span> {<span class="synDelimiter">/</span><span class="synSpecial">&lt;[</span><span class="synString">aeiouy</span><span class="synSpecial">]&gt;</span><span class="synDelimiter">/</span>} <span class="synOperator">==&gt;</span> <span class="synFunction">is</span>(<span class="synOperator">$</span>(<span class="synOperator">*</span>)<span class="synOperator">,</span> <span class="synOperator">$</span>(<span class="synIdentifier">@out</span>)<span class="synOperator">,</span> <span class="synDelimiter">'</span><span class="synString">basic test for $(*)</span><span class="synDelimiter">'</span>)<span class="synOperator">;</span>
+
+<span class="synKeyword">sub</span> <span class="synNormal">is-cool</span> {
+}
+
+<span class="synKeyword">role</span> <span class="synNormal">q</span> {
+}
+
+<span class="synStatement">=begin</span><span class="synp6PodDelimRegion"> </span><span class="synType">foo-bar</span>
+
+<span class="synComment">bla</span>
+
+<span class="synStatement">=end</span><span class="synp6PodDelimEndRegion"> </span><span class="synType">foo-bar</span>
+
+<span class="synIdentifier">@foo</span><span class="synOperator">».++;</span>
+
+<span class="synIdentifier">$foo</span><span class="synOperator">,</span> <span class="synIdentifier">$</span><span class="synOperator">,</span> <span class="synIdentifier">$bar</span> <span class="synOperator">=</span> <span class="synIdentifier">@bla</span><span class="synOperator">;</span>
+<span class="synIdentifier">$foo</span><span class="synOperator">,</span> <span class="synIdentifier">@</span><span class="synOperator">,</span> <span class="synIdentifier">$bar</span> <span class="synOperator">=</span> <span class="synIdentifier">@bla</span><span class="synOperator">;</span>
+
+<span class="synFunction">isa_ok</span> <span class="synNumber">NaN</span> <span class="synOperator">+</span> <span class="synNumber">1</span><span class="synOperator">i,</span> <span class="synType">Complex</span><span class="synOperator">,</span> <span class="synDelimiter">&quot;</span><span class="synString">NaN + 1i is a Complex number</span><span class="synDelimiter">&quot;</span><span class="synOperator">;</span>
+<span class="synFunction">ok</span> <span class="synNumber">NaN</span> <span class="synOperator">+</span> <span class="synNumber">1</span><span class="synOperator">i</span> <span class="synOperator">~~</span> <span class="synNumber">NaN</span><span class="synOperator">,</span> <span class="synDelimiter">&quot;</span><span class="synString">NaN + 1i ~~ NaN</span><span class="synDelimiter">&quot;</span><span class="synOperator">;</span>
+<span class="synFunction">ok</span> <span class="synNumber">NaN</span> <span class="synOperator">~~</span> <span class="synNumber">NaN</span> <span class="synOperator">+</span> <span class="synNumber">1</span><span class="synOperator">i,</span> <span class="synDelimiter">&quot;</span><span class="synString">NaN ~~ NaN + 1i</span><span class="synDelimiter">&quot;</span><span class="synOperator">;</span>
+
+<span class="synSpecial">my</span> <span class="synIdentifier">$str</span> <span class="synOperator">=</span> <span class="synDelimiter">&quot;</span><span class="synString">bla bla </span><span class="synIdentifier">&amp;is-cool</span><span class="synp6InterpFunction">()</span><span class="synString"> yes</span><span class="synDelimiter">&quot;</span><span class="synOperator">;</span>
+
+<span class="synKeyword">class</span> <span class="synNormal">Foo-Bar</span> {
+    <span class="synKeyword">method</span> <span class="synNormal">bla</span> { <span class="synFunction">say</span> <span class="synDelimiter">&quot;</span><span class="synString">foo</span><span class="synDelimiter">&quot;</span> }
+}
+
+<span class="synKeyword">class</span> <span class="synNormal">Bla'Bla</span> {
+    <span class="synKeyword">method</span> <span class="synNormal">boo</span> { <span class="synFunction">say</span> <span class="synDelimiter">&quot;</span><span class="synString">bar</span><span class="synDelimiter">&quot;</span> }
+}
+
+<span class="synNumber">Inf</span><span class="synOperator">,</span> <span class="synOperator">-</span><span class="synNumber">Inf</span><span class="synOperator">,</span> <span class="synNumber">NaN</span><span class="synOperator">,</span> <span class="synOperator">+</span><span class="synNumber">Inf</span>
+
+<span class="synComment"># old-style octals are bad</span>
+<span class="synDelimiter">&quot;</span><span class="synError">\10</span><span class="synDelimiter">&quot;</span>
+<span class="synDelimiter">&quot;</span><span class="synError">\123</span><span class="synDelimiter">&quot;</span>
+<span class="synComment"># ascii nul is ok though</span>
+<span class="synDelimiter">&quot;</span><span class="synSpecial">\0</span><span class="synString">40</span><span class="synDelimiter">&quot;</span>
+
+<span class="synComment"># </span><span class="synTodo">TODO</span><span class="synComment">: highlighting of // and grammars in general is still not good enough</span>
+<span class="synComment">#for ('/foo/bar/baz/' ~~ m/^ $&lt;dirname&gt;=(.* '/'+)? $&lt;basename&gt;=(&lt;-[\/]&gt;+) '/'* $ /).gist.lines {</span>
+<span class="synComment">#    %count{$0}++ if / ^ \s+ (\w+) \s+ '=&gt;' /;   ## extract key</span>
+<span class="synComment">#};</span>
+<span class="synComment">#throws_like &quot;my Int a = 10;&quot;, X::Syntax::Malformed, message =&gt; / sigilless /;</span>
+</pre>
+
+ </body>
+</html>
