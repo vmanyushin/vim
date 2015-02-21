@@ -29,11 +29,24 @@ let g:snips_author='vmanyushin'
 ""
 "" Mapping
 ""
-nmap <C-T> :tabnew<CR>:Explore<CR>
-nmap <F4>  :close<CR>
-nmap <C-B> :tabnext<CR>
-nmap <C-P> :tabprev<CR>
-nmap <F2>  :w<CR>
+nmap <C-T> <Esc> :tabnew<CR>:Explore<CR>
+vmap <C-T> <Esc> :tabnew<CR>:Explore<CR>
+imap <C-T> <Esc> :tabnew<CR>:Explore<CR>
+
+nmap <F4>   :close<CR>
+
+nmap <C-P> <Esc> :tabprev<CR>
+vmap <C-P> <Esc> :tabprev<CR>
+imap <C-P> <Esc> :tabprev<CR>
+
+nmap <F2> <Esc> :w<CR>
+vmap <F2> <Esc> :w<CR> 
+imap <F2> <Esc> :w<CR>
+
+"" BufExplorer
+nmap <C-b> <Esc>:BufExplorer<cr>
+vmap <C-b> <esc>:BufExplorer<cr>
+imap <C-b> <esc>:BufExplorer<cr>
 
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
@@ -50,9 +63,11 @@ if has("autocmd")
   autocmd FileType css  setlocal ts=2 sts=2 sw=2 expandtab
   autocmd FileType ruby,eruby,haml setlocal ts=2 sts=2 sw=2 expandtab autoindent
   autocmd FileType javascript setlocal ts=4 sts=4 sw=4 noexpandtab
-  
+  autocmd FileType php map <buffer> <C-E> :!php %<CR>
+  autocmd FileType perl map <buffer> <C-E> :!perl %<CR>
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml 
 endif
 
-
+"" misc
+:set laststatus=2
