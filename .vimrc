@@ -48,6 +48,8 @@ nmap <C-b> <Esc>:BufExplorer<cr>
 vmap <C-b> <esc>:BufExplorer<cr>
 imap <C-b> <esc>:BufExplorer<cr>
 
+map <C-n> :NERDTreeToggle<CR>
+
 nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 if has("autocmd")
@@ -67,6 +69,8 @@ if has("autocmd")
   autocmd FileType perl map <buffer> <C-E> :!perl %<CR>
   " Treat .rss files as XML
   autocmd BufNewFile,BufRead *.rss setfiletype xml 
+  autocmd StdinReadPre * let s:std_in=1
+  autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 endif
 
 "" misc
